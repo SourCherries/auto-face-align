@@ -1,0 +1,3 @@
+# This file contains the tarball location of the packages listed in REQUIREMENTS
+# that don't exist on PyPi, or the ones that should replace it. E.g.:
+# http://github.com/hcarvalhoalves/django-filter/tarball/master#egg=django-filter

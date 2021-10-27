@@ -1,0 +1,71 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 .AppleColorEmojiUI;}
+{\colortbl;\red255\green255\blue255;\red53\green53\blue53;}
+{\*\expandedcolortbl;;\cssrgb\c27059\c27059\c27059;}
+{\info
+{\author Carl Michael Gaspar}
+{\*\company Center for Cognition & Brain Disorders}}\margl1440\margr1440\vieww14040\viewh16500\viewkind1
+\deftab560
+\pard\pardeftab560\partightenfactor0
+
+\f0\b\fs34 \cf2 Generic Installation\
+\
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\b0\fs24 \cf2 Go to alignfaces2, wherever you put it on your computer:\
+>> cd /somewhere_on_your_computer/facepackage/alignfaces2\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf2 \
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+
+\b I encourage you to create and activate a virtual environment at this point.\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf2 On my mac I use virtualenv, and create an environment within /alignfaces2/:\
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\b0 \cf2 >> virtualenv env\
+When I create a virtual environment, an \'93env\'94 directory is created within \'93alignfaces2\'94:\
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\i \cf2 /somewhere_on_your_computer/
+\i0 facepackage/
+\i alignfaces2/env
+\i0 \
+\
+To activate this environment, I change directory to /alignfaces2/ then:\
+>> source env/bin/activate\
+And to disactivate:\
+>> deactivate\
+\
+For all of the steps below, your new virutal environment should be activated!\
+\pard\pardeftab560\slleading20\pardirnatural\partightenfactor0
+\cf2 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+Install Python 3+ if you do not have it.\
+\
+\pard\pardeftab560\slleading20\partightenfactor0
+\cf2 While still in /alignfaces2/, install all the packages you need:\
+>> env/bin/pip install cmake\
+\
+>> env/bin/pip install -r requirements.txt\
+\
+Install alignfaces2:\
+>> python setup.py install\
+\
+\pard\pardeftab560\sa40\partightenfactor0
+
+\b\fs28 \cf2 Use alignfaces2\
+\pard\pardeftab560\slleading20\partightenfactor0
+
+\b0\fs24 \cf2 Now ready to use 
+\f1 \uc0\u55358 \u56599 
+\f0 \
+\
+If you installed to a virtual environment, be sure to activate that first.\
+Activate virtual environment.\
+If you\'92re using virtualenv, you\'92ll have to go to /alignfaces2/ first.\
+\
+Go to the testing directory:\
+>> cd /somewhere_on_your_computer/facepackage/your_project_here/\
+\
+Run test and read the output to your terminal:\
+>> python test.py}

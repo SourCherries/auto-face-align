@@ -1,0 +1,8 @@
+Database,n,Failed Face Detections,Inaccurate Landmarks
+CAS-female,437,0,0
+CAS-male,589,0,0
+GUFD-female,106,0,0
+GUFD-male,323,0,0
+KUFD-DC,252,0,2
+KUFD-ID,252,1,10
+All,1959,1,12
