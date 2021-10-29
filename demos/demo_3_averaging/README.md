@@ -1,10 +1,10 @@
 # Enhanced facial average
-In this folder, we provide an example Python script that uses AFA to generate an enhanced average of Tony Blair's face:
+In this folder, we provide an example Python script that uses AFA to generate an enhanced average of Angela Merkel's face:
 ```
 python run_demo.py
 ```
 ## Explanation
-Ten different photos of Tony Blair are in the folder `faces-of-tony-blair`.
+Ten different photos of Angela Merkel are in the folder `faces-of-merkel`.
 
 We used AFA to align all of these faces, shown in panel (a) of the figure below.
 
@@ -14,7 +14,7 @@ We show a simple average of the aligned faces in panel (b). This looks decent bu
 
 We can do better by warping each of the aligned faces in order to match a common coordinate system, shown in panel (c). First we calculate the average of landmarks across faces. Then we warp each of the aligned faces so that landmarks are repositioned to match the average landmarks. **Consequently, landmark positions are the same for each of the faces shown in panel c.** The average of these warped faces is shown in panel d.
 
-As you can see by comparing panels b and d, the  average-of-warps (d) shows a greater clarity in the local contrast of facial features compared to the simple average (b).
+As you can see by comparing panels b and d, the average-of-warps (d) shows a greater clarity in the local contrast of facial features compared to the simple average (b).
 
 ## run_demo.py
 Before an enhanced average can be made, the faces must be aligned and landmarks for those aligned faces should be calculated:
@@ -50,6 +50,6 @@ This **enhanced facial average** was first demonstrated by
 
 > Burton, A. M., Jenkins, R., Hancock, P. J. B., & White, D. (2005). Robust representations for face recognition: The power of averages. Cogn Psychol, 51(3), 256–284. https://doi.org/10.1016/j.cogpsych.2005.06.003
 
-We used the same photos of Tony Blair as they used (in their Figure 3).
+We used the same photos of Angela Merkel as they used (in their Figure 3).
 
 Manual landmark selection was required in Burton et al. (2005), whereas AFA automated the entire process in our demo.
