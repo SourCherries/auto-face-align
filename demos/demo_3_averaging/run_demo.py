@@ -18,16 +18,16 @@ def slim_fig(ax):
 
 
 # ----------------------------------------------------------------------
-# Align all faces of Tony Blair
+# Align all faces of Angela Merkel
 
 # Path for faces directory
-blair_folder = "faces-of-tony-blair"
+merkel_folder = "faces-of-merkel"
 my_project_path = os.path.dirname(os.path.abspath(__file__))
-my_faces_path = my_project_path + os.path.sep + blair_folder + os.path.sep
+my_faces_path = my_project_path + os.path.sep + merkel_folder + os.path.sep
 
 # Analyze all image files whose filenames have these properties ...
-file_prefix = "blair"
-file_postfix = "png"
+file_prefix = "merkel"
+file_postfix = "jpg"
 
 # Estimate landmarks.
 af.get_landmarks(my_faces_path, file_prefix, file_postfix, start_fresh=True)
@@ -66,7 +66,7 @@ im_montage = montage(original_images, rescale_intensity=True,
                      grid_shape=(2, 5))
 ax.imshow(im_montage, cmap=plt.cm.gray, interpolation='nearest')
 slim_fig(ax)
-plt.savefig('A_the_many_faces_of_blair.png', bbox_inches = 'tight', pad_inches = 0)
+plt.savefig('A_the_many_faces_of_merkel.png', bbox_inches = 'tight', pad_inches = 0)
 
 fig, ax = plt.subplots(subplot_kw={'aspect': 'equal'})
 ax.imshow(simple_average, cmap=plt.cm.gray)
@@ -77,7 +77,7 @@ fig, ax = plt.subplots(subplot_kw={'aspect': 'equal'})
 im_montage = montage(warped_to_mean, rescale_intensity=True, grid_shape=(2, 5))
 ax.imshow(im_montage, cmap=plt.cm.gray, interpolation='nearest')
 slim_fig(ax)
-plt.savefig('C_the_many_warped_faces_of_blair.png', bbox_inches = 'tight', pad_inches = 0)
+plt.savefig('C_the_many_warped_faces_of_merkel.png', bbox_inches = 'tight', pad_inches = 0)
 
 fig, ax = plt.subplots(subplot_kw={'aspect': 'equal'})
 ax.imshow(enhanced_average, cmap=plt.cm.gray)

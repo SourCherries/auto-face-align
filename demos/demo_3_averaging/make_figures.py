@@ -4,8 +4,8 @@ from PIL import Image as PilImage
 from skimage.util import montage
 import matplotlib.pyplot as plt
 
-fnames = [["A_the_many_faces_of_blair.png", "B_simple_average.png"],
-          ["C_the_many_warped_faces_of_blair.png", "D_enhanced_average.png"]]
+fnames = [["A_the_many_faces_of_merkel.png", "B_simple_average.png"],
+          ["C_the_many_warped_faces_of_merkel.png", "D_enhanced_average.png"]]
 
 imgs = []
 for r in range(2):
