@@ -67,12 +67,14 @@ It is highly recommended that you have **conda** installed, preferably **minicon
 
 If you do have **conda**, then do the following to install:
 ```
-conda create --name tafa-full dlib “python>=3.9” scikit-image
+conda create --name myenv conda-forge::dlib "python>=3.9" scikit-image
 
-conda activate tafa-full
+conda activate myenv
 
 pip install "alignfaces @ git+https://git@github.com/SourCherries/auto-face-align.git"
 ```
+
+This will create a new virtual environment called `myenv`. You can use another name for that. You'll need to activate this environment using `conda activate myenv` whenever you want to use AFA. To deactivate, simply type `conda deactivate myenv`.
 
 # How well does this work?
 In addition to unit-testing critical computations, I evaluated both landmark estimation (DLIB) and the outcome of the entire alignment procedure using various face databases. The results are described [here](results/README.md).
