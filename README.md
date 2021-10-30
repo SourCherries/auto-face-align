@@ -1,4 +1,6 @@
-# Automatic Face Alignment (AFA)
+Automatic Face Alignment (AFA)
+================
+Carl M. Gaspar & Oliver G.B. Garrod
 
 #### You have lots of photos of faces like this:
 ![](demos/demo_1_alignment/collage_originals.png)
