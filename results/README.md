@@ -72,9 +72,25 @@ The 2 cases of failed landmark placement for KUFT-DC are for subjects wearing gl
 
 Among the 10 cases of failed landmark placement for KUFT-ID: 5 are for subjects wearing glasses, 1 is for a subject with an pose that is highly deviant from frontal-parallel, 1 is for a subject with hair covering an eyebrow. The other (3) cases are difficult to explain but they were all non-Caucasian (Black specifically) and we suspect that this deserves greater attention.
 
-## AFA performance
-![](landmark-dist-all.png)
+## AFA performance (neutral expression)
+<!-- ![](landmark-dist-all.png) -->
+
+<img src="landmark-dist-all.png" height="500">
+
 Distributions of landmarks (red ellipses) overlaid on mean of GPA-aligned images. Ellipse orientation based on angle between first and second eigenvectors of PCA applied to landmarks across all faces in a single category. Ellipse length and width are 2 SD of variability along those eigenvectors. Analysis is done separately for 4 categories of faces: Chinese females from the CAS database (a); Chinese males from the CAS database (b); predominantly Caucasian female faces from the GUFD database (c); predominantly Caucasian male faces from the GUFD database (d); in-lab photos of mostly Caucasian faces (mixed gender) from the KUFD database; and low-resolution photo-ID of mostly Caucasian faces (mixed gender and expression) from the KUFD database. Despite SD being a non-robust measure of variability that is strongly inflated by outliers, each ellipse is quite small relative to the size of facial features. Ellipse sizes are also roughly uniform across the different landmarks. The means of aligned faces have high contrast and normal-looking facial features. That provides additional, qualitative validation of the entire GPA-alignment process performed by AFA (including landmark detection).
+
+## AFA performance (emotionally expressive)
+<img src="landmark-dist-nim-all.png" height="150">
+
+<!-- expression = ["an", "ca", "di", "fe", "ha", "ne", "sa", "sp"] -->
+
+Distributions of landmarks (red ellipses) overlaid on mean of GPA-aligned images of emotionally expressive faces. Unlike in the previous figure, alignments for these faces were based only on eye landmarks.
+[a to h] corresponds to anger, CA, disgust, fear, happy, neutral, sad, and surprised for closed mouth expressions. There was only 1 face available for closed-mouth surprise so that category has been excluded. [i to p] corresponds to anger, CA, disgust, fear, happy, neutral, sad, and surprised for open mouth expressions.
+
+***TO DO***
+What is CA?
+Reference for NIMSTIM?
+Comments on results for NIM?
 
 ## References
 >Gao, W., Cao, B., Shan, S., Chen, X., Zhou, D., Zhang, X., & Zhao, D. (2008). The CAS-PEAL large-scale Chinese face database and baseline evaluations. IEEE Transactions on Systems, Man, and Cybernetics-Part A: Systems and Humans, 38(1), 149–161.
@@ -82,120 +98,3 @@ Distributions of landmarks (red ellipses) overlaid on mean of GPA-aligned images
 >Burton, A. M., White, D., & McNeill, A. (2010). The Glasgow Face Matching Test. Behavior Research Methods, 42(1), 286–291. https://doi.org/10.3758/BRM.42.1.286
 
 >Fysh, M. C., & Bindemann, M. (2018). The Kent Face Matching Test. British Journal of Psychology, 109(2), 219–231. https://doi.org/10.1111/bjop.12260
-
-# Evaluation of DLIB and AFA with emotionally expressive faces
-1. nim_1_preprocessing.py [get landmarks]
-    2. nim_1b_table_of_bad_lm.py
-    3. nim_1b_table_of_bad_lm.R
-2. nim_1_preprocessing.py [alignment]
-4. nim_2_main.py
-5. nim_3_additional.py
-
-
-## nim_1_preprocessing.py
-Do for each of 16 folders of faces.
-Visual inspection of landmarks overlaid on photos.
-Within each folder:
-    - **bad-landmarks.csv**         [mouth ignored]
-    - **bad-landmarks-strict.csv**  [mouth considered for exclusion]
-
-## nim_1b_table_of_bad_lm.py
-**bad-landmarks** files -> **table-DLIB-bad-landmarks-NIM.csv**
-
-## nim_1b_table_of_bad_lm.R
-**table-DLIB-bad-landmarks-NIM.csv** -> **table-wide-DLIB-bad-landmarks-NIM.csv**
-
-Copy and paste into a Word table: **/manuscript/table-nim-stim-bad-landmarks.docx**
-Select table values and "convert to table".
-
-## nim_1_preprocessing.py
-Run second part:
-1. exclude bad landmarks (not strict)
-2. make table
-For total numbers of photos in each category and number of failed DLIB detections:
-**table-DLIB-failures-NIM.csv**
-There are 0 failed detections 😆
-3. align faces
-    - **TO DO** modify script to exclude mouth when aligning!
-        - exclude_features=['jawline', 'left_iris', 'right_iris',
-        'mouth_inner', 'mouth_outline']
-    - **ANTICIPATE PROGRAMMING**
-        - Cropping parameters will be different now!!!!!!
-        - Simply shift vertically rows by (old cog - new cog)
-            - cog mean of all landmarks
-        - CODE THIS AS A PROPORTION OF EYE DISTANCE
-        - Invoke shift if all mouth_inner and mouth_outline are excluded
-
-
-# How does cropping normally work.
-After centring centroid to (0,0) and aligning, an additional translation shifts
-the image down by 5/12 times eye-distance, which ensures the entire head is
-within the image.
-
-# Statistics of mean landmarks for various databases
-Statistics for post alignment landmarks. Reference eye distance is 94 pixels.
-
-| Database | Centroid with mouth - Centroid without mouth |
-| :------: | :------: |
-| CAS-female | 29.36842105263158 |
-| CAS-male | 29.69100169779287 |
-| GUFD-female | 28.11320754716981 |
-| GUFD-male | 29.04953560371517 |
-
--> landmarks.txt
--> mean of landmarks (included with alignment)
-    -> centroid
--> mean of landmarks (included with alignment without mouth)
-    -> centroid
-
-Average centroid with mouth - centroid without mouth = 29 pixels
-As a fraction of eye distance in pixels = 29 / 94
-
-af.get_landmark_features(source_dir, output_dir="", exclude_features=['jawline',
-                          'left_iris', 'right_iris', 'mouth_inner'])
-
-# Addition to make_aligned_faces
-
-In ```align_procrustes```, starting at line 787.
-
-```
-if exclude_features includes both mouth_inner and mouth_outline:
-
-shift image up by (29/94) x eye_distance
-```
-
-For eyes only, very similar shift (32.5 / 94) x eye_distance!!!
-
-```
-ema = "mouth_inner" in exclude_features
-emb = "mouth_outline" in exclude_features
-if (ema and emb):
-
-
-```
-
-1. Make change starting at line 787 🚀
-1. Test results/nim_1_preprocessing
-    - problem installing
-    - line 15 of setup.py
-
-``README = (BASE_LOCATION.parent / "README.md").read_text()``
-Do a test where I print this out to see if properly specified.
-
-
-
-# NOT updating directory
-***REMEMBER TO UPDATE ALL SCRIPTS TO USE IMPORT ALIGNFACES INSTEAD OF ALIGNFACES2***
-
-0. Revise demo scripts to import alignfaces instead of alignfaces2 🚀
-1. Do full reinstall and test of alignfaces using quick install.🚀
-2. Finish NIM STIM.🚀
-    - still need to nim_3_additional.py [just a check on aligned landmarks]😊
-3. [LATER] Revise results scripts to import alignfaces instead of alignfaces2
-
-
-CV
-emails to interns et cetera
-prepare for tomorrow's classes
-- 425-002 Similarity Lecture
-- 466-001 t-test lecture (FIND)
