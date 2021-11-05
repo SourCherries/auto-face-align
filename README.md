@@ -78,6 +78,12 @@ pip install "alignfaces @ git+https://git@github.com/SourCherries/auto-face-alig
 
 This will create a new virtual environment called `myenv`. You can use another name for that. You'll need to activate this environment using `conda activate myenv` whenever you want to use AFA. To deactivate, simply type `conda deactivate myenv`.
 
+Windows users may encounter a problem with plotting. That is a [general issue](https://stackoverflow.com/questions/69786885/after-conda-update-python-kernel-crashes-when-matplotlib-is-used) with **Matplotlib** on Windows. To fix, simply type the following while your `myenv` is activated:
+
+```
+conda install freetype=2.10.4
+```
+
 # How well does this work?
 In addition to unit-testing critical computations, I evaluated both landmark estimation (DLIB) and the outcome of the entire alignment procedure using various face databases. The results are described [here](results/README.md).
 
