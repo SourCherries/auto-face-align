@@ -1,7 +1,7 @@
 # Evaluation of DLIB and AFA
-To test DLIB landmark detection and our GPA-based alignment procedure in the typical use-case for psychology researchers, we use 3 different databases of face photographs.
+To test DLIB landmark detection and our GPA-based alignment procedure in the typical use-case for psychology researchers, we use 3 different databases of face photographs. The vast majority of faces from these 3 databases were emotionally neutral. We did an additional assessment using a fourth database of faces that varied in emotional expression.
 
-The databases we used: the CAS-PEAL database of Chinese faces (Gao et al., 2008); the Glasgow Unfamiliar Face Database GUFD (Burton et al., 2010); and faces from the Kent Face Matching Test KFMT (Fysh & Bindemann, 2018).
+The databases we used: the CAS-PEAL database of Chinese faces (Gao et al., 2008); the Glasgow Unfamiliar Face Database GUFD (Burton et al., 2010); faces from the Kent Face Matching Test KFMT (Fysh & Bindemann, 2018); and emotionally expressive faces from the NimStim database (Nim et al., 2009). Analyses are reported separately for the neutral (first 3 databases) and expressive sets (NimStim database).
 
 In particular, GUFD and KFMT are tailored to the study of face perception in realistic scenarios, so the faces from these databases were photographed with variable quality cameras and resolutions and allowed for natural poses instead of a strictly frontal-parallel orientation of the face.
 
@@ -54,7 +54,7 @@ Visual inspection shows all landmark placement to be excellent in all of the ali
 
 
 
-## DLIB performance
+## DLIB performance (neutral expression)
 
 |Database	|Eye Distance, pixels	|Race	|n	|Failed Face Detections	|Failed Landmark Placement|
 | :--- | :---: | :---: | :---: | :---: | :---: |
@@ -72,6 +72,28 @@ The 2 cases of failed landmark placement for KUFT-DC are for subjects wearing gl
 
 Among the 10 cases of failed landmark placement for KUFT-ID: 5 are for subjects wearing glasses, 1 is for a subject with an pose that is highly deviant from frontal-parallel, 1 is for a subject with hair covering an eyebrow. The other (3) cases are difficult to explain but they were all non-Caucasian (Black specifically) and we suspect that this deserves greater attention.
 
+## DLIB performance (emotionally expressive)
+There were no failed face detections.
+
+### Number of Failed Landmark Placements (conservative)
+
+Consider mouth
+
+|Mouth|	Angry|	Calm|	Disgust|	Fear|	Happy|	Neutral|	Sad|	Surprised|
+| :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
+|Open	|9 (42)|	2 (41)|	31 (42)|	3 (42)|	1 (42)|	1 (41)|	3 (41)|	7 (42)|
+|Closed	|1 (42)|	1 (41)|	7  (40)|	4 (37)|	1 (41)|	1 (42)|	4 (41)|	1  (2)|
+
+
+### Number of Failed Landmark Placements (liberal)
+
+Do not consider mouth
+
+|Mouth|	Angry|	Calm|	Disgust|	Fear|	Happy|	Neutral|	Sad|	Surprised|
+| :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
+|Open|	    1 (42)|	1 (41)|	1   (42)|	1 (42)|	1 (42)|	1 (41)|	1 (41)|	3 (42)|
+|Closed|	1 (42)|	1 (41)|	1   (40)|	1 (37)|	1 (41)|	1 (42)|	1 (41)|	1 (2)|
+
 ## AFA performance (neutral expression)
 <!-- ![](landmark-dist-all.png) -->
 
@@ -85,16 +107,16 @@ Distributions of landmarks (red ellipses) overlaid on mean of GPA-aligned images
 <!-- expression = ["an", "ca", "di", "fe", "ha", "ne", "sa", "sp"] -->
 
 Distributions of landmarks (red ellipses) overlaid on mean of GPA-aligned images of emotionally expressive faces. Unlike in the previous figure, alignments for these faces were based only on eye landmarks.
-[a to h] corresponds to anger, CA, disgust, fear, happy, neutral, sad, and surprised for closed mouth expressions. There was only 1 face available for closed-mouth surprise so that category has been excluded. [i to p] corresponds to anger, CA, disgust, fear, happy, neutral, sad, and surprised for open mouth expressions.
+[a to h] corresponds to anger, calm, disgust, fear, happy, neutral, sad, and surprised for closed mouth expressions. There was only 1 face available for closed-mouth surprise so that category has been excluded. [i to p] corresponds to anger, calm, disgust, fear, happy, neutral, sad, and surprised for open mouth expressions.
 
 ***TO DO***
-What is CA?
-Reference for NIMSTIM?
 Comments on results for NIM?
 
 ## References
->Gao, W., Cao, B., Shan, S., Chen, X., Zhou, D., Zhang, X., & Zhao, D. (2008). The CAS-PEAL large-scale Chinese face database and baseline evaluations. IEEE Transactions on Systems, Man, and Cybernetics-Part A: Systems and Humans, 38(1), 149–161.
-
 >Burton, A. M., White, D., & McNeill, A. (2010). The Glasgow Face Matching Test. Behavior Research Methods, 42(1), 286–291. https://doi.org/10.3758/BRM.42.1.286
 
 >Fysh, M. C., & Bindemann, M. (2018). The Kent Face Matching Test. British Journal of Psychology, 109(2), 219–231. https://doi.org/10.1111/bjop.12260
+
+>Gao, W., Cao, B., Shan, S., Chen, X., Zhou, D., Zhang, X., & Zhao, D. (2008). The CAS-PEAL large-scale Chinese face database and baseline evaluations. IEEE Transactions on Systems, Man, and Cybernetics-Part A: Systems and Humans, 38(1), 149–161.
+
+>Tottenham, Nim, James W. Tanaka, Andrew C. Leon, Thomas McCarry, Marcella Nurse, Todd A. Hare, David J. Marcus, Alissa Westerlund, BJ Casey, and Charles Nelson. “The NimStim Set of Facial Expressions: Judgments from Untrained Research Participants.” Psychiatry Research 168, no. 3 (August 15, 2009): 242–49. https://doi.org/10.1016/j.psychres.2008.05.006.
