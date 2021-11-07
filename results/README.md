@@ -7,6 +7,8 @@ In particular, GUFD and KFMT are tailored to the study of face perception in rea
 
 Photographic subjects in both the GUFD and KFMT databases were allowed to have their hair worn in any fashion. And unlike the other two databases, photographic subjects in the KFMT database were allowed to wear glasses.
 
+Photographic subjects in the NimStim database of emotionally expressive faces were professional actors from diverse ethnic/racial backgrounds (10 African, 6 Asian, 25 European and 2 Latino-American). There were 8 different emotional expressions, each with open- and closed-mouth versions (a total of 16 categories). Identification of expressions is both accurate and reliable (Nim et al., 2009).
+
 Image resolutions in width-by-height (pixels) are 360 x 480 and 350 x 518 for the CAS-PEAL and GUFD databases, respectively. KFMT was divided between KFMT-DC and KFMT-ID which were photos taken in-lab (283 x 332 pixels) and pre-existing photo-identification (142 x 192) obtained from the same people.
 
 Given variability in the area occupied by faces across these databases (due to camera distance and focus), perhaps a better metric for image resolution that allows comparison across databases is the mean eye distance measured using AFA. Those eye distances (pixels) are listed in the table below.
@@ -73,11 +75,14 @@ The 2 cases of failed landmark placement for KUFT-DC are for subjects wearing gl
 Among the 10 cases of failed landmark placement for KUFT-ID: 5 are for subjects wearing glasses, 1 is for a subject with an pose that is highly deviant from frontal-parallel, 1 is for a subject with hair covering an eyebrow. The other (3) cases are difficult to explain but they were all non-Caucasian (Black specifically) and we suspect that this deserves greater attention.
 
 ## DLIB performance (emotionally expressive)
+Can emotionally expressive faces be successfully aligned using AFA?
+DLIB's landmark detector was trained mostly on faces either a near neutral expression, or a slight smile. It is possible that DLIB may either fail to detect a face or provide poor estimates of landmarks.
+
 There were no failed face detections.
 
 ### Number of Failed Landmark Placements (conservative)
 
-Consider mouth
+Visual inspection of landmarks overlaid on the photos show that mouths were the most poorly estimated by DLIB. We can reject a face based on all landmark estimates, including those of the mouth. That provide a conservative estimate of landmark accuracy, with greater numbers of rejected faces. The table below shows the total number of faces with bad landmarks in each of the emotion categories according to this conservative criterion. Total number in each category are in parentheses.
 
 |Mouth|	Angry|	Calm|	Disgust|	Fear|	Happy|	Neutral|	Sad|	Surprised|
 | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
@@ -87,12 +92,14 @@ Consider mouth
 
 ### Number of Failed Landmark Placements (liberal)
 
-Do not consider mouth
+Given the poor estimation of mouth landmarks for some categories of emotionally expressive faces (disgust and anger), it might be best to exclude mouth landmarks when aligning faces with AFA. In this table, we show the total number of faces with bad landmarks in each of the emotion categories according to this liberal criterion (not considering the mouth).
 
 |Mouth|	Angry|	Calm|	Disgust|	Fear|	Happy|	Neutral|	Sad|	Surprised|
 | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- | :-- |
 |Open|	    1 (42)|	1 (41)|	1   (42)|	1 (42)|	1 (42)|	1 (41)|	1 (41)|	3 (42)|
 |Closed|	1 (42)|	1 (41)|	1   (40)|	1 (37)|	1 (41)|	1 (42)|	1 (41)|	1 (2)|
+
+These results are quite good considering that photographic subjects are repeated across category and a single individual is responsible for most of the failed landmarks in this table.
 
 ## AFA performance (neutral expression)
 <!-- ![](landmark-dist-all.png) -->
@@ -107,10 +114,9 @@ Distributions of landmarks (red ellipses) overlaid on mean of GPA-aligned images
 <!-- expression = ["an", "ca", "di", "fe", "ha", "ne", "sa", "sp"] -->
 
 Distributions of landmarks (red ellipses) overlaid on mean of GPA-aligned images of emotionally expressive faces. Unlike in the previous figure, alignments for these faces were based only on eye landmarks.
-[a to h] corresponds to anger, calm, disgust, fear, happy, neutral, sad, and surprised for closed mouth expressions. There was only 1 face available for closed-mouth surprise so that category has been excluded. [i to p] corresponds to anger, calm, disgust, fear, happy, neutral, sad, and surprised for open mouth expressions.
+[a to h] corresponds to anger, calm, disgust, fear, happy, neutral, sad, and surprised for closed mouth expressions. There was only 1 face available for closed-mouth surprise so that category has been excluded. [i to p] corresponds to anger, calm, disgust, fear, happy, neutral, sad, and surprised for open mouth expressions. As can be seen by the size of red ellipses around the eyes and the strong local contrast of eyes in the mean faces, AFA does an excellent job of aligning by eye landmarks alone. As expected from common experience, landmark variability is largest around the mouth.
 
-***TO DO***
-Comments on results for NIM?
+
 
 ## References
 >Burton, A. M., White, D., & McNeill, A. (2010). The Glasgow Face Matching Test. Behavior Research Methods, 42(1), 286–291. https://doi.org/10.3758/BRM.42.1.286
