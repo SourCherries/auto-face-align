@@ -107,8 +107,11 @@ python setup.py install
 ``` -->
 
 # Citation
-If you use this package for your research, please cite the following paper:
-> Gaspar, C.M. & Garrod, O.G.B. (in preparation). A Python toolbox for Automatic Face Alignment (AFA). Behavior Research Methods
+If you use this package for your research, please cite the following preprint:
+>Gaspar, C. M., & Garrod, O. G. B. (2021, November 8). A Python toolbox for Automatic Face Alignment (AFA). Retrieved from psyarxiv.com/erc8a
+
+DOI:
+>10.31234/osf.io/erc8a
 
 # License
 This module is under an Apache-2.0 license.
