@@ -712,18 +712,24 @@ def align_procrustes(source_dir, file_prefix='', file_postfix='jpg',
     # mean_shape_proper_scale = mean_shape * (EYE_DISTANCE / MeanEyeDist)
     # or course, it should be the actual distance within mean_shape!!!
 
-    left_eye = mean_shape[LabelToCoordinateIndex["left_eye"]]
-    right_eye = mean_shape[LabelToCoordinateIndex["right_eye"]]
-    LX = left_eye[::2].mean()
-    LY = left_eye[1::2].mean()
-    RX = right_eye[::2].mean()
-    RY = right_eye[1::2].mean()
-    mean_shape_eye_dist = np.sqrt((LX-RX)**2 + (LY-RY)**2)
-    mean_shape_proper_scale = mean_shape * (EYE_DISTANCE / mean_shape_eye_dist)
+    have_both_eyes = ("right_eye" in list(LabelToCoordinateIndex) and
+                      "left_eye" in list(LabelToCoordinateIndex))
 
-    LabelToCoordinateIndex = landmark_features['LabelToCoordinateIndex']
-    angle_constant_rad = tilt_radians_to_ensure_eyes_level(mean_shape_proper_scale, LabelToCoordinateIndex)
-    angle_constant = angle_constant_rad * 180 / math.pi
+    if have_both_eyes:
+        left_eye = mean_shape[LabelToCoordinateIndex["left_eye"]]
+        right_eye = mean_shape[LabelToCoordinateIndex["right_eye"]]
+        LX = left_eye[::2].mean()
+        LY = left_eye[1::2].mean()
+        RX = right_eye[::2].mean()
+        RY = right_eye[1::2].mean()
+        mean_shape_eye_dist = np.sqrt((LX-RX)**2 + (LY-RY)**2)
+        mean_shape_proper_scale = mean_shape * (EYE_DISTANCE / mean_shape_eye_dist)
+        LabelToCoordinateIndex = landmark_features['LabelToCoordinateIndex']
+        angle_constant_rad = tilt_radians_to_ensure_eyes_level(mean_shape_proper_scale, LabelToCoordinateIndex)
+        angle_constant = angle_constant_rad * 180 / math.pi
+    else:
+        mean_shape_proper_scale = mean_shape
+        angle_constant = 0
 
     # Now obtain precise scale and angle change for AllSubjectsLandmarksDict[i] --> mean_shape_proper_scale
     # FinalLandmarks = []
