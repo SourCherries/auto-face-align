@@ -109,8 +109,8 @@ def pawarp(im, base, target, interp='bilin'):
                       [imdims[1], 1], [imdims[1], imdims[0]]])
     boxpix -= 1
 
-    pix1 = base.astype(np.float)
-    pix2 = target.astype(np.float)
+    pix1 = base.astype(float)
+    pix2 = target.astype(float)
 
     pix1 = np.vstack((pix1, boxpix))
     pix2 = np.vstack((pix2, boxpix))
