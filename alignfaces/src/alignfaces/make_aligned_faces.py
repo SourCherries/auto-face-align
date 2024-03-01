@@ -254,7 +254,8 @@ def get_landmarks(MotherDir, file_prefix, file_postfix, include_jaw=False,
             this_array = ThisSubjectLandmarksDict[features[fi] + '_POINTS']
             # this_array = AllSubjectsLandmarksDictAllFeature[features[fi] + '_POINTS']
             this_photo[features[fi].lower()] = \
-                list(this_array.flatten().astype(np.float))
+                list(this_array.flatten().astype(float))
+                # list(this_array.flatten().astype(np.float))
         # TO DO
         #   append iris points [x, y] to this_photo
         # take from IrisPoints
@@ -918,6 +919,7 @@ def place_aperture(source_dir, file_prefix='', file_postfix='jpg',
     # size = cv2.imread(source_files[0]).shape[0:2]
     size = np.array(PilImage.open(source_files[0]).convert("L")).shape[0:2]
 
+    aperture_good = True
     if aperture_type == "Ellipse":
         X = shapes[:, 0::2].reshape(-1,)
         Y = shapes[:, 1::2].reshape(-1,)
@@ -942,10 +944,11 @@ def place_aperture(source_dir, file_prefix='', file_postfix='jpg',
                                      size, fraction_width=47/100, soften=True)[0]
     else:
         print("Error: aperture_type should be Ellipse or MossEgg.")
-        the_aperture = []
+        aperture_good = False
+        # the_aperture = []
     if no_save:
         return the_aperture
-    if (the_aperture != []):
+    if aperture_good:
         # # Need this to create all subfolders in ./in_aperture
         # files = make_files(source_dir, FilePrefix="",
         #                    FilePostfix=FilePostfix, new_dir="windowed")

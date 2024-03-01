@@ -164,12 +164,14 @@ def make_moss_egg(landmark_features, center, size,
     MossEgg = EggA | EggB | EggC
 
     if soften:
-        ME = MossEgg.astype(np.float)
+        ME = MossEgg.astype(float)
         IP = landmark_features['IrisPoints']
         IPD = [np.sqrt(sum((I[1] - I[0])**2)) for I in IP]
         sigma = round(np.asarray(IPD).mean() * 0.05)
         MossEgg = gaussian(ME, sigma=(sigma, sigma),
-                           truncate=3.5 * sigma, multichannel=False)
+                           truncate=3.5 * sigma)
+        # MossEgg = gaussian(ME, sigma=(sigma, sigma),
+        #                    truncate=3.5 * sigma, multichannel=False)
 
     # package critical variables for visualizing moss's egg construction
     egg_params = {}

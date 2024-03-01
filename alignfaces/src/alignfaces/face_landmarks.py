@@ -160,7 +160,15 @@ def pull_jawline_to_inside_of_hairline(Landmarks, Face):
 
     init = upsampled_points
 
-    if (int((skimage.__version__).split(".")[1]) > 15):
+    if (int((skimage.__version__).split(".")[1]) > 19):
+        # switch columns of init
+        init = np.roll(init, 1, axis=1)
+        snake = active_contour(Face, init, boundary_condition='free-fixed',
+                               alpha=0.1, beta=1.0, w_line=0, w_edge=5,
+                               gamma=0.1, convergence=0.01)
+        # switch columns of snake
+        snake = np.roll(snake, 1, axis=1)
+    elif (int((skimage.__version__).split(".")[1]) > 15):
         # switch columns of init
         init = np.roll(init, 1, axis=1)
         snake = active_contour(Face, init, boundary_condition='free-fixed',
@@ -196,7 +204,15 @@ def pull_jawline_to_inside_of_hairline(Landmarks, Face):
 
     init = upsampled_points
 
-    if (int((skimage.__version__).split(".")[1]) > 15):
+    if (int((skimage.__version__).split(".")[1]) > 19):
+        # switch columns of init
+        init = np.roll(init, 1, axis=1)
+        snake = active_contour(Face, init, boundary_condition='free-fixed',
+                               alpha=0.1, beta=1.0, w_line=0, w_edge=5,
+                               gamma=0.1, convergence=0.01)
+        # switch columns of snake
+        snake = np.roll(snake, 1, axis=1)
+    elif (int((skimage.__version__).split(".")[1]) > 15):
         # switch columns of init
         init = np.roll(init, 1, axis=1)
         snake = active_contour(Face, init, boundary_condition='free-fixed',
