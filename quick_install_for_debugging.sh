@@ -9,7 +9,11 @@ mother=$(pwd)
 
 # Activate appropriate virtual environment.
 status=$(uname -n)
-if [ "$status" = "Carls-iMac" ] ; then
+if [ "$status" = "ML089328-10722" ]; then
+  echo "This is Carl's ZU MacBook Pro (M1)."
+  eval "$(conda shell.bash hook)"
+  conda activate afa-test
+elif [ "$status" = "Carls-iMac" ] ; then
   echo "This is Carl's iMac."
   source slimmest/bin/activate
 elif [ "$status" = "Carls-MacBook-Pro.local" ] ; then
@@ -21,13 +25,13 @@ fi
 
 # Install face toolbox.
 if [ "$1" = "install" ] ; then
-  cd alignfaces
+  #cd alignfaces
   python setup.py install
-  cd $mother
+  #cd $mother
 else
   echo "Type './quick_install_for_debugging.sh install' to install face toolbox."
-  cd alignfaces
-  cd $mother
+  #cd alignfaces
+  #cd $mother
 fi
 
 # Run unit tests.
