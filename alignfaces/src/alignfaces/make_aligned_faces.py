@@ -880,6 +880,12 @@ def align_procrustes(source_dir, file_prefix='', file_postfix='jpg',
     print("should now be populated with aligned faces.\n")
     print("Please examine the contents.\n\n")
     print("\n--------------------------------------------------------------\n")
+    # Write a specs.csv file to record constant image dimensions
+    fieldnames = ["adjust_size", "image_height", "image_width", "eye_distance"]
+    with open(output_dir + "specs.csv", mode="w") as csv_file:
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerow({"adjust_size": adjust_size, "image_height":IMAGE_HEIGHT, "image_width":IMAGE_WIDTH,"eye_distance":EYE_DISTANCE})
     # return mean_shape, new_shapes, source_files
     return output_dir
 
