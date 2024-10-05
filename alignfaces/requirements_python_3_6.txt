@@ -1,7 +1,0 @@
-cmake==3.13.3
-dlib==19.17.0
-imutils==0.5.2
-opencv-python==4.0.0.21
-numpy >=1.11.3
-scikit-image==0.15.0
-wheel==0.33.1

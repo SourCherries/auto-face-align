@@ -1,7 +1,0 @@
-cmake>=3.13.3
-wheel>=0.33.1
-dlib>=19.17.0
-imutils>=0.5.2
-scikit-image<0.18
-numpy>=1.11.3
-scipy>=1.1.0
