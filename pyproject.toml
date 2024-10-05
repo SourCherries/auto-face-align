@@ -1,0 +1,25 @@
+[project]
+name = "alignfaces"
+authors = [
+    {name = "Carl Michael Gaspar", email = "carl.michael.gaspar@icloud.com"},
+    {name = "Oliver G.B. Garrod", email = "oliver.garrod@fabdata.io"}
+]
+description = "Automatically align and warp face images"
+readme = "README.md"
+keywords = ["face-alignment", "face-morphing","psychophysics","psychology-experiments"]
+license = {text = "Apache-2.0"}
+dependencies = [
+    "dlib",
+    "scikit-image"
+]
+version = "0.0.1"
+
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+
+[tool.setuptools.package-data]
+"alignfaces.data" = ["*.dat"]
+"alignfaces.tests.R" = ["*.csv"]

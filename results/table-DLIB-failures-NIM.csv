@@ -1,0 +1,18 @@
+Database,n,Failed Face Detections,Inaccurate Landmarks
+NIM-an-o,42,0,1
+NIM-an-c,42,0,1
+NIM-ca-o,41,0,1
+NIM-ca-c,41,0,1
+NIM-di-o,42,0,1
+NIM-di-c,40,0,1
+NIM-fe-o,42,0,1
+NIM-fe-c,37,0,1
+NIM-ha-o,42,0,1
+NIM-ha-c,41,0,1
+NIM-ne-o,41,0,1
+NIM-ne-c,42,0,1
+NIM-sa-o,41,0,1
+NIM-sa-c,41,0,1
+NIM-sp-o,42,0,3
+NIM-sp-c,2,0,1
+All,619,0,18

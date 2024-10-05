@@ -1,0 +1,6 @@
+GUFD 2 versions for each identity (with natural variation) included
+GUFD only marked as Caucasian
+CAS only frontal with frontal lighting and marked as young
+one-by-one visual inspection of all faces with landmarks overlaid revealed no obvious failures
+one-by-one visual inspection of all faces with landmarks overlaid (results_3_additional.py) revealed no obvious failures
+actually i used full GUFD database. also remember to put a note in table about whether there was pre-existing alignment, then footnote with details
