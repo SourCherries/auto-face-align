@@ -43,7 +43,7 @@ It is highly recommended that you have **conda** installed, preferably **minicon
 If you do have **conda**, then this is the easiest way to install:
 
 ```bash
-conda create --name myenv conda-forge::dlib "python>=3.9" scikit-image
+conda create --name myenv "conda-forge::dlib<19.24.2" "python>=3.9" scikit-image
 
 conda activate myenv
 
