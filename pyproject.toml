@@ -8,15 +8,16 @@ description = "Automatically align and warp face images"
 readme = "README.md"
 keywords = ["face-alignment", "face-morphing","psychophysics","psychology-experiments"]
 license = {text = "Apache-2.0"}
+requires-python = ">=3.9"
 dependencies = [
     "dlib",
     "scikit-image"
 ]
-version = "0.0.1"
+version = "1.0.0"
 
 
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 
