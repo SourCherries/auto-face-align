@@ -20,8 +20,8 @@ As you can see by comparing panels b and d, the average-of-warps (d) shows a gre
 Before an enhanced average can be made, the faces must be aligned and landmarks for those aligned faces should be calculated:
 
 ```python
-pfx = ""     # relevant input files may start with a string
-sfx = "jpg"  # input image format
+pfx = "merkel"  # relevant input files start with "merkel"
+sfx = "jpg"     # input image format
 
 # Estimate landmarks.
 af.get_landmarks(my_faces_path,
