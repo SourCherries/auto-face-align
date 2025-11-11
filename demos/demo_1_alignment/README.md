@@ -46,11 +46,11 @@ However, you will need to specify the **source directory** for your own projects
 Before we can align the faces, we must detect landmarks.
 ```python
 # Analyze all image files whose filenames have these properties ...
-file_prefix = ""
-file_postfix = "jpg"
+pfx = ""
+sfx = "jpg"
 
 # Estimate landmarks.
-af.get_landmarks(my_faces_path, file_prefix, file_postfix, start_fresh=True)
+af.get_landmarks(my_faces_path, file_prefix = pfx, file_postfix = sfx, start_fresh=True)
 ```
 
 This will detect facial landmarks in each of the images found in `my_faces_path` whose file names end in `jpg`. If you want to process only those images whose filenames start with "V-" and you do not care what file extension (image type) is used then you would set
@@ -108,9 +108,6 @@ landmark_features, files = afa.get_landmark_features(my_faces_path)
 `landmark_features` is a Python dict with the original landmark data, as well as derived variables like the tilt of the line connecting the centers of left and right eyes, and the distance between the center of the mouth and midpoint between eyes.
 
 Very rarely, DLIB may fail to detect a face. In that case, there will not be an entry for that face in `landmarks.txt`.
-
-SOMETHING ABOUT DLIB ACCURACY FROM ORIGINAL PAPER.
-SOMETHING ABOUT USAGE OF DLIB IN RESEARCH AND COMMERCIAL PRODUCT.
 
 We did our own evaluation of DLIB landmark placement using the visual inspection described next.
 The results of that are described [here](../../results/README.md)

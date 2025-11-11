@@ -24,10 +24,17 @@ First we create a new folder `an-unusual-pair` that contains only the 2 faces we
 Before morphs can be made, the faces must be aligned and landmarks for those aligned faces should be calculated:
 
 ```python
-af.get_landmarks(source_dir, file_prefix, file_postfix)
-aligned_path = af.align_procrustes(source_dir, file_prefix, file_postfix,
+pfx = ""     # relevant input files may start with a string
+sfx = "jpg"  # input image format
+
+af.get_landmarks(source_dir, file_prefix = pfx, file_postfix = sfx)
+aligned_path = af.align_procrustes(source_dir,
+                                   file_prefix = pfx,
+                                   file_postfix = pfx,
                                    color_of_result="rgb")
-af.get_landmarks(aligned_path, file_prefix, file_postfix)
+af.get_landmarks(aligned_path,
+                 file_prefix = pfx,
+                 file_postfix = sfx)
 ```
 Once this is done, we can now produce a morph between Choi Min-sik and Sarah Silverman in 9 equal steps:
 
@@ -37,15 +44,15 @@ num_morphs = 10
 
 face_array, p, morph_path = af.morph_between_two_faces(aligned_path,
                                                        do_these=do_these,
-                                                       num_morphs=num_morphs,
-                                                       file_prefix=file_prefix,
-                                                       file_postfix=file_postfix,
+                                                       num_morphs=num_morph,
+                                                       file_prefix=pfx,
+                                                       file_postfix=sfx,
                                                        new_dir = "morphed",
                                                        weight_texture=True)
 ```
 The variable `do_these` refers to which faces to morph together. Because there are only 2 faces in our `source_dir`, setting `do_these = [0, 1]` is all we need to do. This is the easiest and recommended method. If `source_dir` has more than 2 faces, then we need to figure out what **index value** refers to which image. Indices can be determined by calling:
 ```python
-files = get_source_files(aligned_path, file_prefix, file_postfix)
+files = af.get_source_files(aligned_path, file_prefix = pfx, file_postfix = pfx)
 ```
 The variable `files` is an list of filenames in `aligned_path`. The first filename has an index of 0, the second has an index of 1 and so on.
 
@@ -53,9 +60,10 @@ Our call to `morph_between_two_faces` produces all of the morph images and write
 
 Finally, if we want to window our morph faces so that only inner facial features are shown, then we can do this:
 ```python
-the_aperture, aperture_path = af.place_aperture(morph_path, "N",
-                                                "png",
-                                                aperture_type="MossEgg",
-                                                contrast_norm="max",
-                                                color_of_result="rgb")
+the_aperture, aperture_path = af.place_aperture(morph_path, 
+                                                file_prefix = "N",
+                                                file_postfix = "png",
+                                                aperture_type = "MossEgg",
+                                                contrast_norm = "max",
+                                                color_of_result = "rgb")
 ```

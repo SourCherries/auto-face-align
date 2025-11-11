@@ -16,10 +16,32 @@ Carl M. Gaspar & Oliver G.B. Garrod
 import alignfaces as afa
 
 faces_path = "/Users/Me/faces_for_my_study/"
-afa.get_landmarks(faces_path)
-aligned_path = afa.align_procrustes(faces_path)
-afa.get_landmarks(aligned_path)
-the_aperture, aperture_path = afa.place_aperture(aligned_path)
+pfx = ""     # relevant input files may start with a string
+sfx = "jpg"  # input image format
+
+afa.get_landmarks(
+    faces_path,
+    file_prefix=pfx,
+    file_postfix=sfx,
+)
+
+aligned_path = afa.align_procrustes(
+    faces_path,
+    file_prefix=pfx,
+    file_postfix=sfx,
+)
+
+afa.get_landmarks(
+    aligned_path,
+    file_prefix=pfx,
+    file_postfix=sfx,
+)
+
+the_aperture, aperture_path = afa.place_aperture(
+    aligned_path,
+    file_prefix=pfx,
+    file_postfix=sfx,
+)
 ```
 To better understand how to write a script for your specific purposes, we direct you to [demo 1](demos/demo_1_alignment/README.md). [Demo 1](demos/demo_1_alignment/README.md) also describes how AFA alignment works.
 

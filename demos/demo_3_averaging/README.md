@@ -20,14 +20,24 @@ As you can see by comparing panels b and d, the average-of-warps (d) shows a gre
 Before an enhanced average can be made, the faces must be aligned and landmarks for those aligned faces should be calculated:
 
 ```python
+pfx = ""     # relevant input files may start with a string
+sfx = "jpg"  # input image format
+
 # Estimate landmarks.
-af.get_landmarks(my_faces_path, file_prefix, file_postfix, start_fresh=True)
+af.get_landmarks(my_faces_path,
+                 file_prefix = pfx, 
+                 file_postfix = sfx,
+                 start_fresh=True)
 
 # Now we're ready to align the faces - via generalized Procrustes analysis.
-aligned_path = af.align_procrustes(my_faces_path, file_prefix, file_postfix)
+aligned_path = af.align_procrustes(my_faces_path,
+                                   file_prefix = pfx,
+                                   file_postfix = sfx)
 
 # Estimate landmarks of aligned faces.
-af.get_landmarks(aligned_path, file_prefix, file_postfix)
+af.get_landmarks(aligned_path,
+                 file_prefix = pfx,
+                 file_postfix = sfx)
 ```
 
 Once this is done, you can now warp each of the aligned faces to the mean of landmarks across faces:
@@ -35,8 +45,8 @@ Once this is done, you can now warp each of the aligned faces to the mean of lan
 ```python
 # Warp each face to mean of landmarks
 original_images, warped_to_mean = af.warp_to_mean_landmarks(aligned_path,
-                                                            file_prefix=file_prefix,
-                                                            file_postfix=file_postfix)
+                                                            file_prefix=pfx,
+                                                            file_postfix=sfx)
 ```
 This returns all of the warped faces in a single NUMPY array `warped_to_mean` that can be averaged like this:
 
