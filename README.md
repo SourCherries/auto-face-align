@@ -72,9 +72,15 @@ conda activate myenv
 conda install -c conda-forge matplotlib
 ```
 
-To install AFA next you have two options:
+To install AFA next you have 3 options:
 
 You either do this:
+
+```bash
+pip install alignfaces
+```
+
+or this:
 
 ```bash
 pip install "alignfaces @ git+https://git@github.com/SourCherries/auto-face-align.git"
